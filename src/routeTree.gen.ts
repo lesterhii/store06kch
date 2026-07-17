@@ -9,38 +9,187 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as StoreSelectRouteImport } from './routes/store-select'
+import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as UniformIndexRouteImport } from './routes/uniform.index'
+import { Route as AwardsIndexRouteImport } from './routes/awards.index'
+import { Route as UniformGeneralRouteImport } from './routes/uniform.general'
+import { Route as UniformAccessoriesRouteImport } from './routes/uniform.accessories'
+import { Route as SuccessOrderIdRouteImport } from './routes/success.$orderId'
+import { Route as AwardsRightGroupRouteImport } from './routes/awards.right.$group'
+import { Route as AwardsLeftGroupRouteImport } from './routes/awards.left.$group'
+import { Route as AdminOrderDetailsOrderIdRouteImport } from './routes/admin.order-details.$orderId'
 
+const StoreSelectRoute = StoreSelectRouteImport.update({
+  id: '/store-select',
+  path: '/store-select',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CheckoutRoute = CheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UniformIndexRoute = UniformIndexRouteImport.update({
+  id: '/uniform/',
+  path: '/uniform/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AwardsIndexRoute = AwardsIndexRouteImport.update({
+  id: '/awards/',
+  path: '/awards/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UniformGeneralRoute = UniformGeneralRouteImport.update({
+  id: '/uniform/general',
+  path: '/uniform/general',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UniformAccessoriesRoute = UniformAccessoriesRouteImport.update({
+  id: '/uniform/accessories',
+  path: '/uniform/accessories',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SuccessOrderIdRoute = SuccessOrderIdRouteImport.update({
+  id: '/success/$orderId',
+  path: '/success/$orderId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AwardsRightGroupRoute = AwardsRightGroupRouteImport.update({
+  id: '/awards/right/$group',
+  path: '/awards/right/$group',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AwardsLeftGroupRoute = AwardsLeftGroupRouteImport.update({
+  id: '/awards/left/$group',
+  path: '/awards/left/$group',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminOrderDetailsOrderIdRoute =
+  AdminOrderDetailsOrderIdRouteImport.update({
+    id: '/admin/order-details/$orderId',
+    path: '/admin/order-details/$orderId',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/checkout': typeof CheckoutRoute
+  '/store-select': typeof StoreSelectRoute
+  '/success/$orderId': typeof SuccessOrderIdRoute
+  '/uniform/accessories': typeof UniformAccessoriesRoute
+  '/uniform/general': typeof UniformGeneralRoute
+  '/awards/': typeof AwardsIndexRoute
+  '/uniform/': typeof UniformIndexRoute
+  '/admin/order-details/$orderId': typeof AdminOrderDetailsOrderIdRoute
+  '/awards/left/$group': typeof AwardsLeftGroupRoute
+  '/awards/right/$group': typeof AwardsRightGroupRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/checkout': typeof CheckoutRoute
+  '/store-select': typeof StoreSelectRoute
+  '/success/$orderId': typeof SuccessOrderIdRoute
+  '/uniform/accessories': typeof UniformAccessoriesRoute
+  '/uniform/general': typeof UniformGeneralRoute
+  '/awards': typeof AwardsIndexRoute
+  '/uniform': typeof UniformIndexRoute
+  '/admin/order-details/$orderId': typeof AdminOrderDetailsOrderIdRoute
+  '/awards/left/$group': typeof AwardsLeftGroupRoute
+  '/awards/right/$group': typeof AwardsRightGroupRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/checkout': typeof CheckoutRoute
+  '/store-select': typeof StoreSelectRoute
+  '/success/$orderId': typeof SuccessOrderIdRoute
+  '/uniform/accessories': typeof UniformAccessoriesRoute
+  '/uniform/general': typeof UniformGeneralRoute
+  '/awards/': typeof AwardsIndexRoute
+  '/uniform/': typeof UniformIndexRoute
+  '/admin/order-details/$orderId': typeof AdminOrderDetailsOrderIdRoute
+  '/awards/left/$group': typeof AwardsLeftGroupRoute
+  '/awards/right/$group': typeof AwardsRightGroupRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/checkout'
+    | '/store-select'
+    | '/success/$orderId'
+    | '/uniform/accessories'
+    | '/uniform/general'
+    | '/awards/'
+    | '/uniform/'
+    | '/admin/order-details/$orderId'
+    | '/awards/left/$group'
+    | '/awards/right/$group'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/checkout'
+    | '/store-select'
+    | '/success/$orderId'
+    | '/uniform/accessories'
+    | '/uniform/general'
+    | '/awards'
+    | '/uniform'
+    | '/admin/order-details/$orderId'
+    | '/awards/left/$group'
+    | '/awards/right/$group'
+  id:
+    | '__root__'
+    | '/'
+    | '/checkout'
+    | '/store-select'
+    | '/success/$orderId'
+    | '/uniform/accessories'
+    | '/uniform/general'
+    | '/awards/'
+    | '/uniform/'
+    | '/admin/order-details/$orderId'
+    | '/awards/left/$group'
+    | '/awards/right/$group'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CheckoutRoute: typeof CheckoutRoute
+  StoreSelectRoute: typeof StoreSelectRoute
+  SuccessOrderIdRoute: typeof SuccessOrderIdRoute
+  UniformAccessoriesRoute: typeof UniformAccessoriesRoute
+  UniformGeneralRoute: typeof UniformGeneralRoute
+  AwardsIndexRoute: typeof AwardsIndexRoute
+  UniformIndexRoute: typeof UniformIndexRoute
+  AdminOrderDetailsOrderIdRoute: typeof AdminOrderDetailsOrderIdRoute
+  AwardsLeftGroupRoute: typeof AwardsLeftGroupRoute
+  AwardsRightGroupRoute: typeof AwardsRightGroupRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/store-select': {
+      id: '/store-select'
+      path: '/store-select'
+      fullPath: '/store-select'
+      preLoaderRoute: typeof StoreSelectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/checkout': {
+      id: '/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +197,78 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/uniform/': {
+      id: '/uniform/'
+      path: '/uniform'
+      fullPath: '/uniform/'
+      preLoaderRoute: typeof UniformIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/awards/': {
+      id: '/awards/'
+      path: '/awards'
+      fullPath: '/awards/'
+      preLoaderRoute: typeof AwardsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/uniform/general': {
+      id: '/uniform/general'
+      path: '/uniform/general'
+      fullPath: '/uniform/general'
+      preLoaderRoute: typeof UniformGeneralRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/uniform/accessories': {
+      id: '/uniform/accessories'
+      path: '/uniform/accessories'
+      fullPath: '/uniform/accessories'
+      preLoaderRoute: typeof UniformAccessoriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/success/$orderId': {
+      id: '/success/$orderId'
+      path: '/success/$orderId'
+      fullPath: '/success/$orderId'
+      preLoaderRoute: typeof SuccessOrderIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/awards/right/$group': {
+      id: '/awards/right/$group'
+      path: '/awards/right/$group'
+      fullPath: '/awards/right/$group'
+      preLoaderRoute: typeof AwardsRightGroupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/awards/left/$group': {
+      id: '/awards/left/$group'
+      path: '/awards/left/$group'
+      fullPath: '/awards/left/$group'
+      preLoaderRoute: typeof AwardsLeftGroupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/order-details/$orderId': {
+      id: '/admin/order-details/$orderId'
+      path: '/admin/order-details/$orderId'
+      fullPath: '/admin/order-details/$orderId'
+      preLoaderRoute: typeof AdminOrderDetailsOrderIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CheckoutRoute: CheckoutRoute,
+  StoreSelectRoute: StoreSelectRoute,
+  SuccessOrderIdRoute: SuccessOrderIdRoute,
+  UniformAccessoriesRoute: UniformAccessoriesRoute,
+  UniformGeneralRoute: UniformGeneralRoute,
+  AwardsIndexRoute: AwardsIndexRoute,
+  UniformIndexRoute: UniformIndexRoute,
+  AdminOrderDetailsOrderIdRoute: AdminOrderDetailsOrderIdRoute,
+  AwardsLeftGroupRoute: AwardsLeftGroupRoute,
+  AwardsRightGroupRoute: AwardsRightGroupRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
