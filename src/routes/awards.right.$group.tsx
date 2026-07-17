@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { RIGHT_AWARDS, RIGHT_GROUPS } from "@/lib/products";
+import { RIGHT_AWARDS, RIGHT_GROUPS, type Product } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
 
 export const Route = createFileRoute("/awards/right/$group")({
@@ -33,7 +33,7 @@ function RightArm() {
       <h1 className="text-3xl font-black mb-1 text-shadow-glow">{data.title}</h1>
       <p className="text-white/70 mb-5">Right Arm Awards · Basic/Advanced variants apply.</p>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-        {data.items.map((p: any) => <ProductCard key={p.id} product={p} />)}
+        {data.items.map((p: Product) => <ProductCard key={p.id} product={p} />)}
       </div>
     </div>
   );
