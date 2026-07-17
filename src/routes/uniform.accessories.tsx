@@ -11,7 +11,7 @@ export const Route = createFileRoute("/uniform/accessories")({
 function Accessories() {
   return (
     <>
-      <SplashOverlay storageKey="splash-accessories" subtitle="Restricted access — proceed with pride.">This page is reserved for NCOs only</SplashOverlay>
+      <SplashOverlay storageKey="splash-accessories" subtitle="Restricted access — proceed with pride." cta="Understood">This page is reserved for NCOs only</SplashOverlay>
       <div className="px-4 py-6 max-w-5xl mx-auto">
         <h1 className="text-3xl font-black mb-1 text-shadow-glow">Accessories</h1>
         <p className="text-white/70 mb-5">NCO ranks, sashes & lanyards.</p>
