@@ -26,7 +26,7 @@ function Success() {
         <p className="text-[color:var(--bb-gold)] text-xl font-black tracking-wider">{order.orderId}</p>
 
         <div className="mt-5 bg-white rounded-2xl p-4 mx-auto inline-block">
-          <QRCodeCanvas value={order.qrUrl} size={200} includeMargin />
+          <QRCodeCanvas value={order.qrText} size={220} includeMargin />
         </div>
         <p className="mt-3 text-white/70 text-sm">Show this QR code to the admin to complete payment in cash.</p>
 

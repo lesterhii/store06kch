@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useStore, cartTotal } from "@/lib/store";
-import { sendOrderEmails, saveOrder } from "@/lib/email";
+import { saveOrder } from "@/lib/email";
 import { Wallet, Info } from "lucide-react";
 import { useState } from "react";
 
@@ -12,6 +12,34 @@ export const Route = createFileRoute("/checkout")({
 function makeOrderId() {
   const n = Math.floor(100 + Math.random() * 900);
   return `6KCH-ORD-${Date.now().toString().slice(-4)}${n}`;
+}
+
+const ADMIN_EMAIL = "lesterze2010@gmail.com";
+
+function buildOrderText(opts: {
+  orderId: string;
+  name: string;
+  phone: string;
+  email: string;
+  cart: { name: string; quantity: number; price: number; size?: string; variant?: string }[];
+  total: number;
+}) {
+  const lines: string[] = [];
+  lines.push(`Order ID: ${opts.orderId}`);
+  lines.push(`Name: ${opts.name}`);
+  lines.push(`Phone: ${opts.phone}`);
+  if (opts.email) lines.push(`Email: ${opts.email}`);
+  lines.push("");
+  lines.push("Items:");
+  opts.cart.forEach((i) => {
+    const extra = [i.variant, i.size].filter(Boolean).join(" / ");
+    lines.push(
+      `- ${i.name}${extra ? ` (${extra})` : ""} x ${i.quantity} = RM ${(i.price * i.quantity).toFixed(2)}`
+    );
+  });
+  lines.push("");
+  lines.push(`Total: RM ${opts.total.toFixed(2)}`);
+  return lines.join("\n");
 }
 
 function Checkout() {
@@ -41,20 +69,37 @@ function Checkout() {
     e.preventDefault();
     setSubmitting(true);
     const orderId = makeOrderId();
-    const qrUrl = `${window.location.origin}/admin/order-details/${orderId}`;
+    const orderText = buildOrderText({
+      orderId,
+      name: form.name,
+      phone: form.phone,
+      email: form.email,
+      cart,
+      total,
+    });
     const order = {
       orderId,
       user: form,
       cart,
       total,
-      qrUrl,
+      qrText: orderText,
       date: new Date().toISOString(),
     };
     saveOrder(order);
-    sendOrderEmails(order);
+
+    // Open the user's email client with a pre-filled admin email
+    const subject = `[6KCH] New order ${orderId} — RM ${total.toFixed(2)}`;
+    const mailto = `mailto:${ADMIN_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(orderText)}`;
+    // Use location.href so mobile mail apps open reliably
+    window.location.href = mailto;
+
     clearCart();
-    navigate({ to: "/success/$orderId", params: { orderId } });
+    // Small delay so the mailto has time to trigger before route change
+    setTimeout(() => {
+      navigate({ to: "/success/$orderId", params: { orderId } });
+    }, 300);
   };
+
 
   return (
     <div className="px-4 py-6 max-w-3xl mx-auto grid gap-4 md:grid-cols-5">

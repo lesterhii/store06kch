@@ -54,36 +54,28 @@ export function AppShell({ children }: { children: ReactNode }) {
         <div className="fixed inset-0 z-50 animate-in fade-in duration-200">
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setMenuOpen(false)} />
           <aside className="absolute left-0 top-0 h-full w-[86%] max-w-sm glass-strong p-4 overflow-y-auto animate-in slide-in-from-left duration-300 flex flex-col gap-3">
-            {/* Oversized Back button */}
-            <button
-              onClick={() => { setMenuOpen(false); if (!isHome) router.history.back(); }}
-              className="w-full rounded-2xl bg-[color:var(--bb-red)] hover:brightness-110 transition text-white font-bold text-2xl py-6 flex items-center justify-center gap-3 shadow-xl"
-            >
-              <ArrowLeft className="w-8 h-8" /> BACK
-            </button>
-
-            <div className="flex items-center justify-between px-1 mt-2">
-              <div className="flex items-center gap-2">
-                <img src={bbLogo.url} alt="" className="w-8 h-8" />
-                <span className="font-bold">Menu</span>
-              </div>
-              <button onClick={() => setMenuOpen(false)} className="w-9 h-9 rounded-lg glass grid place-items-center"><X className="w-4 h-4" /></button>
+            {/* Top two-button header: Back + Close */}
+            <div className="grid grid-cols-2 gap-3">
+              <button
+                onClick={() => { setMenuOpen(false); if (!isHome) router.history.back(); }}
+                className="rounded-2xl bg-[color:var(--bb-red)] hover:brightness-110 transition text-white font-bold text-lg py-4 flex items-center justify-center gap-2 shadow-xl"
+              >
+                <ArrowLeft className="w-5 h-5" /> Back
+              </button>
+              <button
+                onClick={() => setMenuOpen(false)}
+                className="rounded-2xl glass-strong hover:bg-white/20 transition text-white font-bold text-lg py-4 flex items-center justify-center gap-2"
+              >
+                <X className="w-5 h-5" /> Close
+              </button>
             </div>
 
-            <NavLink to="/" icon={<Home className="w-5 h-5" />} label="Welcome" />
-            <NavLink to="/store-select" icon={<Store className="w-5 h-5" />} label="Store Selection" />
-            <SectionLabel icon={<Shirt className="w-4 h-4" />} text="Uniform Store" />
-            <NavLink to="/uniform" label="Menu" />
-            <NavLink to="/uniform/general" label="General" />
-            <NavLink to="/uniform/accessories" label="Accessories" />
-            <SectionLabel icon={<Award className="w-4 h-4" />} text="Right Arm Awards" />
-            {RIGHT_GROUPS.map((g) => (
-              <NavLink key={g.slug} to="/awards/right/$group" params={{ group: g.slug }} label={g.label} />
-            ))}
-            <SectionLabel icon={<Award className="w-4 h-4" />} text="Left Arm Awards" />
-            {LEFT_GROUPS.map((g) => (
-              <NavLink key={g.slug} to="/awards/left/$group" params={{ group: g.slug }} label={g.label} />
-            ))}
+            <div className="flex items-center gap-2 px-1 mt-3">
+              <img src={bbLogo.url} alt="" className="w-8 h-8" />
+              <span className="font-bold">Menu</span>
+            </div>
+
+            <ContextualNav pathname={loc.pathname} />
           </aside>
         </div>
       )}
@@ -91,6 +83,53 @@ export function AppShell({ children }: { children: ReactNode }) {
       {/* Cart drawer */}
       {cartOpen && <CartDrawer />}
     </div>
+  );
+}
+
+function ContextualNav({ pathname }: { pathname: string }) {
+  // Uniform context
+  if (pathname.startsWith("/uniform")) {
+    return (
+      <>
+        <SectionLabel icon={<Shirt className="w-4 h-4" />} text="Uniform Store" />
+        <NavLink to="/uniform" label="Uniform Menu" />
+        <NavLink to="/uniform/general" label="General" />
+        <NavLink to="/uniform/accessories" label="Accessories (NCO)" />
+      </>
+    );
+  }
+  // Right Arm Awards context
+  if (pathname.startsWith("/awards/right")) {
+    return (
+      <>
+        <SectionLabel icon={<Award className="w-4 h-4" />} text="Right Arm Awards" />
+        {RIGHT_GROUPS.map((g) => (
+          <NavLink key={g.slug} to="/awards/right/$group" params={{ group: g.slug }} label={g.label} />
+        ))}
+      </>
+    );
+  }
+  // Left Arm Awards context
+  if (pathname.startsWith("/awards/left")) {
+    return (
+      <>
+        <SectionLabel icon={<Award className="w-4 h-4" />} text="Left Arm Awards" />
+        {LEFT_GROUPS.map((g) => (
+          <NavLink key={g.slug} to="/awards/left/$group" params={{ group: g.slug }} label={g.label} />
+        ))}
+      </>
+    );
+  }
+  // Awards hub or anywhere else — default hub-level nav
+  return (
+    <>
+      <NavLink to="/" icon={<Home className="w-5 h-5" />} label="Welcome" />
+      <NavLink to="/store-select" icon={<Store className="w-5 h-5" />} label="Store Selection" />
+      <SectionLabel icon={<Shirt className="w-4 h-4" />} text="Uniform Store" />
+      <NavLink to="/uniform" label="Uniform Menu" />
+      <SectionLabel icon={<Award className="w-4 h-4" />} text="Awards Store" />
+      <NavLink to="/awards" label="Awards Menu" />
+    </>
   );
 }
 

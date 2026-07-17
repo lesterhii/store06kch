@@ -1,4 +1,4 @@
-// Mock email logic — logs to console. Replace with EmailJS when configured.
+// No-backend order storage. Emails are sent via a mailto: link from checkout.
 import type { CartItem, UserInfo } from "./store";
 
 export type OrderEmail = {
@@ -6,34 +6,9 @@ export type OrderEmail = {
   user: UserInfo;
   cart: CartItem[];
   total: number;
-  qrUrl: string;
+  qrText: string;
   date: string;
 };
-
-export function sendOrderEmails(order: OrderEmail) {
-  // Buyer email
-  console.info("[EMAIL → BUYER]", order.user.email, {
-    subject: `Order ${order.orderId} placed and waiting for review`,
-    body: {
-      message: "Your digital receipt is attached. Show the QR code to the admin in person.",
-      qr: order.qrUrl,
-      items: order.cart,
-      total: order.total,
-    },
-  });
-  // Admin email
-  console.info("[EMAIL → ADMIN] lesterze2010@gmail.com", {
-    subject: `[6KCH] New order ${order.orderId} — RM ${order.total.toFixed(2)}`,
-    body: {
-      orderId: order.orderId,
-      buyer: order.user,
-      items: order.cart,
-      total: order.total,
-      qr: order.qrUrl,
-      date: order.date,
-    },
-  });
-}
 
 const ORDERS_KEY = "6kch_orders";
 export function saveOrder(order: OrderEmail) {
