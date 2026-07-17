@@ -1,7 +1,3 @@
-import uniformImg from "@/assets/uniform_hero.jpg";
-import accessoriesImg from "@/assets/accessories_hero.jpg";
-import rightAwardImg from "@/assets/right_award_hero.jpg";
-import leftAwardImg from "@/assets/left_award_hero.jpg";
 
 export type SizeVariant = { label: string; price: number };
 export type Product = {
