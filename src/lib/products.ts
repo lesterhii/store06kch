@@ -25,11 +25,11 @@ export const UNIFORM_GENERAL: Product[] = [
   { id: "u-sock", name: "Navy Blue Sock", price: 8.5, image: "https://picsum.photos/seed/u-sock/500/500", category: "general" },
   { id: "u-fscap", name: "Field Service Cap", price: 12.5, image: "https://picsum.photos/seed/u-fscap/500/500", sizes: ["XS-54CM","S-56CM","M-58CM","L-60CM","XL-62CM"], category: "general" },
   { id: "u-mufti", name: "Senior Mufti", price: 25, image: "https://picsum.photos/seed/u-mufti/500/500", sizes: ["XS-34","S-36","M-38","L-40","XL-42","XXL-42","3XL-44"], category: "general" },
-  { id: "u-longshirt", name: "Senior Long Sleeve Shirt", image: uniformImg, sizePriceMap: [
+  { id: "u-longshirt", name: "Senior Long Sleeve Shirt", image: "https://picsum.photos/seed/u-longshirt/500/500", sizePriceMap: [
     {label:"XXS-38",price:36},{label:"XS-40",price:36},{label:"S-42",price:36},{label:"M-44",price:36},{label:"L-46",price:36},
     {label:"XL-48",price:38},{label:"XXL-50",price:38},{label:"3XL-52",price:38},
   ], category: "general" },
-  { id: "u-trouser", name: "Senior Trouser", image: uniformImg, sizePriceMap: [
+  { id: "u-trouser", name: "Senior Trouser", image: "https://picsum.photos/seed/u-trouser/500/500", sizePriceMap: [
     {label:'24"',price:36},{label:'26"',price:36},{label:'28"',price:36},{label:'30"',price:36},{label:'32"',price:36},{label:'34"',price:36},{label:'36"',price:36},{label:'38"',price:36},
     {label:'40"',price:40},{label:'42"',price:40},{label:'44"',price:40},
   ], category: "general" },
