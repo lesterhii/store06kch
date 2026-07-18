@@ -14,7 +14,8 @@ function makeOrderId() {
   return `6KCH-ORD-${Date.now().toString().slice(-4)}${n}`;
 }
 
-const ADMIN_EMAIL = "lesterze2010@gmail.com";
+// Updated with primary recipient and CC
+const ADMIN_EMAIL = "Jeremyhii.jh@gmail.com?cc=lesterze2010@gmail.com";
 
 function buildOrderText(opts: {
   orderId: string;
@@ -26,6 +27,7 @@ function buildOrderText(opts: {
 }) {
   const lines: string[] = [];
   lines.push(`Order ID: ${opts.orderId}`);
+  lines.push(`Date: ${new Date().toLocaleString()}`); // Added Date/Time
   lines.push(`Name: ${opts.name}`);
   lines.push(`Phone: ${opts.phone}`);
   if (opts.email) lines.push(`Email: ${opts.email}`);
@@ -87,19 +89,16 @@ function Checkout() {
     };
     saveOrder(order);
 
-    // Open the user's email client with a pre-filled admin email
+    // Updated mailto syntax using & because ADMIN_EMAIL contains ?
     const subject = `[6KCH] New order ${orderId} — RM ${total.toFixed(2)}`;
-    const mailto = `mailto:${ADMIN_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(orderText)}`;
-    // Use location.href so mobile mail apps open reliably
+    const mailto = `mailto:${ADMIN_EMAIL}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(orderText)}`;
     window.location.href = mailto;
 
     clearCart();
-    // Small delay so the mailto has time to trigger before route change
     setTimeout(() => {
       navigate({ to: "/success/$orderId", params: { orderId } });
     }, 300);
   };
-
 
   return (
     <div className="px-4 py-6 max-w-3xl mx-auto grid gap-4 md:grid-cols-5">
@@ -157,3 +156,4 @@ function F({ label, v, on, type = "text" }: { label: string; v: string; on: (v: 
     </label>
   );
 }
+
