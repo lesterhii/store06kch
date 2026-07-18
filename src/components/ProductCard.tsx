@@ -39,11 +39,10 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
       const found = product.sizePriceMap.find((s) => s.label === size);
       return found?.price ?? 0;
     }
-    const base = product.price ?? 0;
     if (variant === "Advanced" && product.advancedSurcharge) {
-      return base + product.advancedSurcharge;
+      return product.advancedSurcharge;
     }
-    return base;
+    return product.price ?? 0;
   })();
 
   const submit = () => {
