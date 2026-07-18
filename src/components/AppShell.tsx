@@ -1,4 +1,4 @@
-import { Link, useRouter, useLocation } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { ArrowLeft, Menu, ShoppingCart, X, Home, Shirt, Award, Store, Trash2, Minus, Plus } from "lucide-react";
 import { useStore, cartTotal } from "@/lib/store";
 import bbLogo from "@/assets/bb_logo.png.asset.json";
@@ -8,9 +8,7 @@ import type { ReactNode } from "react";
 export function AppShell({ children }: { children: ReactNode }) {
   const { cart, cartOpen, setCartOpen, menuOpen, setMenuOpen } = useStore();
   const totalQty = cart.reduce((s, i) => s + i.quantity, 0);
-  const router = useRouter();
   const loc = useLocation();
-  const isHome = loc.pathname === "/";
 
   return (
     <div className="min-h-dvh relative">
@@ -26,7 +24,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           </button>
           <Link to="/" className="flex items-center gap-2">
             <img src={bbLogo.url} alt="6th Kuching BB" className="h-9 w-9 object-contain drop-shadow-lg" />
-            <span className="font-bold tracking-wide text-shadow-glow hidden sm:inline">6th Kch Store</span>
+            <span className="font-bold tracking-wide text-shadow-glow">The 06 Kch Store</span>
           </Link>
           <div className="w-11" />
         </div>
@@ -54,21 +52,13 @@ export function AppShell({ children }: { children: ReactNode }) {
         <div className="fixed inset-0 z-50 animate-in fade-in duration-200">
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setMenuOpen(false)} />
           <aside className="absolute left-0 top-0 h-full w-[86%] max-w-sm glass-strong p-4 overflow-y-auto animate-in slide-in-from-left duration-300 flex flex-col gap-3">
-            {/* Top two-button header: Back + Close */}
-            <div className="grid grid-cols-2 gap-3">
-              <button
-                onClick={() => { setMenuOpen(false); if (!isHome) router.history.back(); }}
-                className="rounded-2xl bg-[color:var(--bb-red)] hover:brightness-110 transition text-white font-bold text-lg py-4 flex items-center justify-center gap-2 shadow-xl"
-              >
-                <ArrowLeft className="w-5 h-5" /> Back
-              </button>
-              <button
-                onClick={() => setMenuOpen(false)}
-                className="rounded-2xl glass-strong hover:bg-white/20 transition text-white font-bold text-lg py-4 flex items-center justify-center gap-2"
-              >
-                <X className="w-5 h-5" /> Close
-              </button>
-            </div>
+            {/* Top: single Back button that closes the drawer */}
+            <button
+              onClick={() => setMenuOpen(false)}
+              className="w-full rounded-2xl bg-[color:var(--bb-red)] hover:brightness-110 transition text-white font-bold text-lg py-4 flex items-center justify-center gap-2 shadow-xl"
+            >
+              <ArrowLeft className="w-5 h-5" /> Back
+            </button>
 
             <div className="flex items-center gap-2 px-1 mt-3">
               <img src={bbLogo.url} alt="" className="w-8 h-8" />
@@ -87,10 +77,13 @@ export function AppShell({ children }: { children: ReactNode }) {
 }
 
 function ContextualNav({ pathname }: { pathname: string }) {
+  const storeSelection = <NavLink to="/store-select" icon={<Store className="w-5 h-5" />} label="Store Selection" />;
+  const awardsMenu = <NavLink to="/awards" icon={<Award className="w-5 h-5" />} label="Awards Menu" />;
   // Uniform context
   if (pathname.startsWith("/uniform")) {
     return (
       <>
+        {storeSelection}
         <SectionLabel icon={<Shirt className="w-4 h-4" />} text="Uniform Store" />
         <NavLink to="/uniform" label="Uniform Menu" />
         <NavLink to="/uniform/general" label="General" />
@@ -102,6 +95,8 @@ function ContextualNav({ pathname }: { pathname: string }) {
   if (pathname.startsWith("/awards/right")) {
     return (
       <>
+        {storeSelection}
+        {awardsMenu}
         <SectionLabel icon={<Award className="w-4 h-4" />} text="Right Arm Awards" />
         {RIGHT_GROUPS.map((g) => (
           <NavLink key={g.slug} to="/awards/right/$group" params={{ group: g.slug }} label={g.label} />
@@ -113,6 +108,25 @@ function ContextualNav({ pathname }: { pathname: string }) {
   if (pathname.startsWith("/awards/left")) {
     return (
       <>
+        {storeSelection}
+        {awardsMenu}
+        <SectionLabel icon={<Award className="w-4 h-4" />} text="Left Arm Awards" />
+        {LEFT_GROUPS.map((g) => (
+          <NavLink key={g.slug} to="/awards/left/$group" params={{ group: g.slug }} label={g.label} />
+        ))}
+      </>
+    );
+  }
+  // Awards hub — needs Store Selection + Awards Menu at top
+  if (pathname.startsWith("/awards")) {
+    return (
+      <>
+        {storeSelection}
+        {awardsMenu}
+        <SectionLabel icon={<Award className="w-4 h-4" />} text="Right Arm Awards" />
+        {RIGHT_GROUPS.map((g) => (
+          <NavLink key={g.slug} to="/awards/right/$group" params={{ group: g.slug }} label={g.label} />
+        ))}
         <SectionLabel icon={<Award className="w-4 h-4" />} text="Left Arm Awards" />
         {LEFT_GROUPS.map((g) => (
           <NavLink key={g.slug} to="/awards/left/$group" params={{ group: g.slug }} label={g.label} />
@@ -124,7 +138,7 @@ function ContextualNav({ pathname }: { pathname: string }) {
   return (
     <>
       <NavLink to="/" icon={<Home className="w-5 h-5" />} label="Welcome" />
-      <NavLink to="/store-select" icon={<Store className="w-5 h-5" />} label="Store Selection" />
+      {storeSelection}
       <SectionLabel icon={<Shirt className="w-4 h-4" />} text="Uniform Store" />
       <NavLink to="/uniform" label="Uniform Menu" />
       <SectionLabel icon={<Award className="w-4 h-4" />} text="Awards Store" />

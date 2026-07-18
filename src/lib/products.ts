@@ -10,6 +10,7 @@ export type Product = {
   sizePriceMap?: SizeVariant[]; // variants with per-size prices
   variants?: string[]; // e.g. Normal/Extra Long, Basic/Advanced
   category: string;
+  advancedSurcharge?: number; // added to base price when "Advanced" variant selected
 };
 
 export const UNIFORM_GENERAL: Product[] = [
@@ -50,9 +51,12 @@ export const UNIFORM_ACCESSORIES: Product[] = [
   { id: "a-blue-sash", name: "Blue Sash", price: 60, image: "https://picsum.photos/seed/a-blue-sash/500/500", category: "accessories" },
 ];
 
-const rightAward = (id: string, name: string, price: number, group: string, image: string, allowAdvanced = true): Product => ({
-  id, name, price, image: image, category: `right-${group}`,
+const rightAward = (id: string, name: string, price: number, group: string, image?: string, allowAdvanced = true): Product => ({
+  id, name, price,
+  image: image ?? `https://picsum.photos/seed/${id}/500/500`,
+  category: `right-${group}`,
   variants: allowAdvanced ? ["Basic","Advanced"] : undefined,
+  advancedSurcharge: allowAdvanced ? 0.6 : undefined,
 });
 
 export const RIGHT_AWARDS: Record<string, { title: string; items: Product[] }> = {
