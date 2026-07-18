@@ -85,7 +85,7 @@ export const RIGHT_AWARDS: Record<string, { title: string; items: Product[] }> =
     rightAward("ra-citizenship","Citizenship",9,"group-c"),
     rightAward("ra-commservice","Community Service",4,"group-c"),
     rightAward("ra-envcon","Environmental Conservation",4,"group-c"),
-    rightAward("ra-firstaid","First Aid",6.5,"group-c"),
+    rightAward("ra-firstaid","First Aid",6.5,"group-c", "https://i.imgur.com/bXgxWoH.jpeg"),
     rightAward("ra-fire","Fire & Rescue",7,"group-c"),
     rightAward("ra-lifesave","Life Saving",7.5,"group-c"),
     rightAward("ra-safety","Safety",8,"group-c"),
