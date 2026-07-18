@@ -106,8 +106,8 @@ export const RIGHT_AWARDS: Record<string, { title: string; items: Product[] }> =
   ]},
 };
 
-const leftAward = (id: string, name: string, price: number, group: string, image: string): Product => ({
-  id, name, price, image: image, category: `left-${group}`,
+const leftAward = (id: string, name: string, price: number, group: string, image?: string): Product => ({
+  id, name, price, image: image ?? `https://picsum.photos/seed/${id}/500/500`, category: `left-${group}`,
 });
 
 export const LEFT_AWARDS: Record<string, { title: string; items: Product[] }> = {
