@@ -106,17 +106,17 @@ export const RIGHT_AWARDS: Record<string, { title: string; items: Product[] }> =
   ]},
 };
 
-const leftAward = (id: string, name: string, price: number, group: string): Product => ({
-  id, name, price, image: `https://picsum.photos/seed/${id}/500/500`, category: `left-${group}`,
+const leftAward = (id: string, name: string, price: number, group: string, image: string): Product => ({
+  id, name, price, image: image, category: `left-${group}`,
 });
 
 export const LEFT_AWARDS: Record<string, { title: string; items: Product[] }> = {
   service: { title: "Service Award", items: [
     leftAward("la-jlink","Junior Link",7,"service"),
     leftAward("la-jservice","Junior Service",6.5,"service"),
-    leftAward("la-1yr","One Year Service",6,"service"),
+    leftAward("la-1yr","One Year Service",6,"service", "https://i.imgur.com/HYk1PvN.png"),
     leftAward("la-3yr","Three Year Service",8.5,"service"),
-    leftAward("la-long","Long Year Service",11,"service"),
+    leftAward("la-long","Long Year Service",11,"service", "https://i.imgur.com/KLXiVu1.png"),
   ]},
   special: { title: "Special Award", items: [
     leftAward("la-bronze","Bronze Scholarship",4,"special"),
