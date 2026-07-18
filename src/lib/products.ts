@@ -61,7 +61,7 @@ const rightAward = (id: string, name: string, price: number, group: string, imag
 
 export const RIGHT_AWARDS: Record<string, { title: string; items: Product[] }> = {
   compulsory: { title: "Compulsory", items: [
-    rightAward("ra-target","Target Award",4,"compulsory", "https://i.imgur.com/bXgxWoH.jpeg", false),
+    rightAward("ra-target","Target Award",4,"compulsory", "https://i.imgur.com/ky8EAGQ.png", false),
     rightAward("ra-christed","Christian Education",8,"compulsory"),
     rightAward("ra-drill","Drill",9,"compulsory"),
     rightAward("ra-recruit","Recruitment",4,"compulsory"),
