@@ -50,14 +50,14 @@ export const UNIFORM_ACCESSORIES: Product[] = [
   { id: "a-blue-sash", name: "Blue Sash", price: 60, image: "https://picsum.photos/seed/a-blue-sash/500/500", category: "accessories" },
 ];
 
-const rightAward = (id: string, name: string, price: number, group: string, allowAdvanced = true): Product => ({
-  id, name, price, image: `https://picsum.photos/seed/${id}/500/500`, category: `right-${group}`,
+const rightAward = (id: string, name: string, price: number, group: string, image: string, allowAdvanced = true): Product => ({
+  id, name, price, image: image, category: `right-${group}`,
   variants: allowAdvanced ? ["Basic","Advanced"] : undefined,
 });
 
 export const RIGHT_AWARDS: Record<string, { title: string; items: Product[] }> = {
   compulsory: { title: "Compulsory", items: [
-    rightAward("ra-target","Target Award",4,"compulsory",false),
+    rightAward("ra-target","Target Award",4,"compulsory", "https://i.imgur.com/bXgxWoH.jpeg", false),
     rightAward("ra-christed","Christian Education",8,"compulsory"),
     rightAward("ra-drill","Drill",9,"compulsory"),
     rightAward("ra-recruit","Recruitment",4,"compulsory"),
