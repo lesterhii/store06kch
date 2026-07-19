@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router"; 
 import { ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/")({
