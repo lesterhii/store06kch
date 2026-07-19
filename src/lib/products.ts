@@ -67,7 +67,7 @@ export const RIGHT_AWARDS: Record<string, { title: string; items: Product[] }> =
     rightAward("ra-recruit","Recruitment",4,"compulsory", "https://i.imgur.com/D8R0GQ5.png"),
   ]},
   "group-a": { title: "Group A – Interest", items: [
-    rightAward("ra-art","Art",7,"group-a", "https://i.imgur.com/e4Tnd2I.png'),
+    rightAward("ra-art","Art",7,"group-a", "https://i.imgur.com/e4Tnd2I.png"),
     rightAward("ra-bandmans","Bandmans",8,"group-a", "https://i.imgur.com/wUb4LFL.png"),
     rightAward("ra-bugler","Bugler",11,"group-a", "https://i.imgur.com/PZBbUi8.png"),
     rightAward("ra-drummer","Drummer",8,"group-a", "https://i.imgur.com/THI4CW5.png"),
