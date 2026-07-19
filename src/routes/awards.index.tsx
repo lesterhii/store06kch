@@ -10,9 +10,19 @@ export const Route = createFileRoute("/awards/")({
 
 function AwardsMenu() {
   const [ack, setAck] = useState(false);
+  
+  // Define the logo URL constant here
+  const BB_LOGO_URL = "https://i.imgur.com/X1ZN9Wj.png";
+
   return (
     <>
-      <SplashOverlay storageKey="splash-awards">Welcome to the Awards Store</SplashOverlay>
+      <SplashOverlay 
+        storageKey="splash-awards" 
+        logoUrl={BB_LOGO_URL}
+      >
+        Welcome to the Awards Store
+      </SplashOverlay>
+      
       <div className="px-4 py-6 max-w-2xl mx-auto">
         {!ack ? (
           <div className="glass-strong rounded-3xl p-6 sm:p-8 text-center animate-in fade-in duration-500">
