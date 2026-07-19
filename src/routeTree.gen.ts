@@ -9,21 +9,21 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as StoreSelectRouteImport } from './routes/store-select'
-import { Route as AwardsIndexRouteImport } from './routes/awards.index'
-import { Route as SuccessOrderIdRouteImport } from './routes/success.$orderId'
+import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as UniformIndexRouteImport } from './routes/uniform.index'
-import { Route as UniformAccessoriesRouteImport } from './routes/uniform.accessories'
+import { Route as AwardsIndexRouteImport } from './routes/awards.index'
 import { Route as UniformGeneralRouteImport } from './routes/uniform.general'
-import { Route as AdminOrderDetailsOrderIdRouteImport } from './routes/admin.order-details.$orderId'
-import { Route as AwardsLeftGroupRouteImport } from './routes/awards.left.$group'
+import { Route as UniformAccessoriesRouteImport } from './routes/uniform.accessories'
+import { Route as SuccessOrderIdRouteImport } from './routes/success.$orderId'
 import { Route as AwardsRightGroupRouteImport } from './routes/awards.right.$group'
+import { Route as AwardsLeftGroupRouteImport } from './routes/awards.left.$group'
+import { Route as AdminOrderDetailsOrderIdRouteImport } from './routes/admin.order-details.$orderId'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const StoreSelectRoute = StoreSelectRouteImport.update({
+  id: '/store-select',
+  path: '/store-select',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CheckoutRoute = CheckoutRouteImport.update({
@@ -31,19 +31,9 @@ const CheckoutRoute = CheckoutRouteImport.update({
   path: '/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
-const StoreSelectRoute = StoreSelectRouteImport.update({
-  id: '/store-select',
-  path: '/store-select',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AwardsIndexRoute = AwardsIndexRouteImport.update({
-  id: '/awards/',
-  path: '/awards/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SuccessOrderIdRoute = SuccessOrderIdRouteImport.update({
-  id: '/success/$orderId',
-  path: '/success/$orderId',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const UniformIndexRoute = UniformIndexRouteImport.update({
@@ -51,14 +41,34 @@ const UniformIndexRoute = UniformIndexRouteImport.update({
   path: '/uniform/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const UniformAccessoriesRoute = UniformAccessoriesRouteImport.update({
-  id: '/uniform/accessories',
-  path: '/uniform/accessories',
+const AwardsIndexRoute = AwardsIndexRouteImport.update({
+  id: '/awards/',
+  path: '/awards/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const UniformGeneralRoute = UniformGeneralRouteImport.update({
   id: '/uniform/general',
   path: '/uniform/general',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UniformAccessoriesRoute = UniformAccessoriesRouteImport.update({
+  id: '/uniform/accessories',
+  path: '/uniform/accessories',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SuccessOrderIdRoute = SuccessOrderIdRouteImport.update({
+  id: '/success/$orderId',
+  path: '/success/$orderId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AwardsRightGroupRoute = AwardsRightGroupRouteImport.update({
+  id: '/awards/right/$group',
+  path: '/awards/right/$group',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AwardsLeftGroupRoute = AwardsLeftGroupRouteImport.update({
+  id: '/awards/left/$group',
+  path: '/awards/left/$group',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminOrderDetailsOrderIdRoute =
@@ -67,16 +77,6 @@ const AdminOrderDetailsOrderIdRoute =
     path: '/admin/order-details/$orderId',
     getParentRoute: () => rootRouteImport,
   } as any)
-const AwardsLeftGroupRoute = AwardsLeftGroupRouteImport.update({
-  id: '/awards/left/$group',
-  path: '/awards/left/$group',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AwardsRightGroupRoute = AwardsRightGroupRouteImport.update({
-  id: '/awards/right/$group',
-  path: '/awards/right/$group',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -176,11 +176,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/store-select': {
+      id: '/store-select'
+      path: '/store-select'
+      fullPath: '/store-select'
+      preLoaderRoute: typeof StoreSelectRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/checkout': {
@@ -190,25 +190,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/store-select': {
-      id: '/store-select'
-      path: '/store-select'
-      fullPath: '/store-select'
-      preLoaderRoute: typeof StoreSelectRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/awards/': {
-      id: '/awards/'
-      path: '/awards'
-      fullPath: '/awards/'
-      preLoaderRoute: typeof AwardsIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/success/$orderId': {
-      id: '/success/$orderId'
-      path: '/success/$orderId'
-      fullPath: '/success/$orderId'
-      preLoaderRoute: typeof SuccessOrderIdRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/uniform/': {
@@ -218,11 +204,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UniformIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/uniform/accessories': {
-      id: '/uniform/accessories'
-      path: '/uniform/accessories'
-      fullPath: '/uniform/accessories'
-      preLoaderRoute: typeof UniformAccessoriesRouteImport
+    '/awards/': {
+      id: '/awards/'
+      path: '/awards'
+      fullPath: '/awards/'
+      preLoaderRoute: typeof AwardsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/uniform/general': {
@@ -232,11 +218,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UniformGeneralRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin/order-details/$orderId': {
-      id: '/admin/order-details/$orderId'
-      path: '/admin/order-details/$orderId'
-      fullPath: '/admin/order-details/$orderId'
-      preLoaderRoute: typeof AdminOrderDetailsOrderIdRouteImport
+    '/uniform/accessories': {
+      id: '/uniform/accessories'
+      path: '/uniform/accessories'
+      fullPath: '/uniform/accessories'
+      preLoaderRoute: typeof UniformAccessoriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/success/$orderId': {
+      id: '/success/$orderId'
+      path: '/success/$orderId'
+      fullPath: '/success/$orderId'
+      preLoaderRoute: typeof SuccessOrderIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/awards/right/$group': {
+      id: '/awards/right/$group'
+      path: '/awards/right/$group'
+      fullPath: '/awards/right/$group'
+      preLoaderRoute: typeof AwardsRightGroupRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/awards/left/$group': {
@@ -246,11 +246,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AwardsLeftGroupRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/awards/right/$group': {
-      id: '/awards/right/$group'
-      path: '/awards/right/$group'
-      fullPath: '/awards/right/$group'
-      preLoaderRoute: typeof AwardsRightGroupRouteImport
+    '/admin/order-details/$orderId': {
+      id: '/admin/order-details/$orderId'
+      path: '/admin/order-details/$orderId'
+      fullPath: '/admin/order-details/$orderId'
+      preLoaderRoute: typeof AdminOrderDetailsOrderIdRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
