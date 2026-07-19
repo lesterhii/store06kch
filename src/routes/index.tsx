@@ -1,5 +1,5 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react"; 
 
 // Use the same URL constant here
 const BB_LOGO_URL = "https://i.imgur.com/X1ZN9Wj.png";
