@@ -4,7 +4,7 @@ import { useStore, cartTotal } from "@/lib/store";
 import { RIGHT_GROUPS, LEFT_GROUPS } from "@/lib/products";
 import type { ReactNode } from "react";
 
-const BB_LOGO_URL = "https://i.imgur.com/X1ZN9Wj.png";
+const BB_LOGO_URL = "https://i.imgur.com/X1ZN9Wj.png"; 
 
 export function AppShell({ children }: { children: ReactNode }) {
   const { cart, cartOpen, setCartOpen, menuOpen, setMenuOpen } = useStore();
