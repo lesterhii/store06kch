@@ -14,8 +14,8 @@ function makeOrderId() {
   return `6KCH-ORD-${Date.now().toString().slice(-4)}${n}`;
 }
 
-// Updated with primary recipient and CC
-const ADMIN_EMAIL = "Jeremyhii.jh@gmail.com?cc=lesterze2010@gmail.com";
+// All five emails in the "To" section separated by commas
+const ADMIN_EMAIL = "Jeremyhii.jh@gmail.com,6thkuchingcompany@gmail.com,gordon92yung@gmail.com,soonhin181199@gmail.com,lesterze2010@gmail.com";
 
 function buildOrderText(opts: {
   orderId: string;
@@ -27,7 +27,7 @@ function buildOrderText(opts: {
 }) {
   const lines: string[] = [];
   lines.push(`Order ID: ${opts.orderId}`);
-  lines.push(`Date: ${new Date().toLocaleString()}`); // Added Date/Time
+  lines.push(`Date: ${new Date().toLocaleString()}`);
   lines.push(`Name: ${opts.name}`);
   lines.push(`Phone: ${opts.phone}`);
   if (opts.email) lines.push(`Email: ${opts.email}`);
@@ -89,9 +89,9 @@ function Checkout() {
     };
     saveOrder(order);
 
-    // Updated mailto syntax using & because ADMIN_EMAIL contains ?
+    // Using ? to start the subject parameter since ADMIN_EMAIL no longer has CC
     const subject = `[6KCH] New order ${orderId} — RM ${total.toFixed(2)}`;
-    const mailto = `mailto:${ADMIN_EMAIL}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(orderText)}`;
+    const mailto = `mailto:${ADMIN_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(orderText)}`;
     window.location.href = mailto;
 
     clearCart();
@@ -156,4 +156,3 @@ function F({ label, v, on, type = "text" }: { label: string; v: string; on: (v: 
     </label>
   );
 }
-
