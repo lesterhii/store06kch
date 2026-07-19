@@ -1,9 +1,10 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { ArrowLeft, Menu, ShoppingCart, X, Home, Shirt, Award, Store, Trash2, Minus, Plus } from "lucide-react";
 import { useStore, cartTotal } from "@/lib/store";
-import bbLogo from "@/assets/bb_logo.png.asset.json";
 import { RIGHT_GROUPS, LEFT_GROUPS } from "@/lib/products";
 import type { ReactNode } from "react";
+
+const BB_LOGO_URL = "https://i.imgur.com/X1ZN9Wj.png";
 
 export function AppShell({ children }: { children: ReactNode }) {
   const { cart, cartOpen, setCartOpen, menuOpen, setMenuOpen } = useStore();
@@ -12,7 +13,6 @@ export function AppShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="min-h-dvh relative">
-      {/* Top bar */}
       <header className="sticky top-0 z-40 px-4 pt-4">
         <div className="glass rounded-2xl px-3 py-2 flex items-center justify-between gap-2">
           <button
@@ -23,7 +23,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             <Menu className="w-5 h-5" />
           </button>
           <Link to="/" className="flex items-center gap-2">
-            <img src={bbLogo.url} alt="6th Kuching BB" className="h-9 w-9 object-contain drop-shadow-lg" />
+            <img src={BB_LOGO_URL} alt="6th Kuching BB" className="h-9 w-9 object-contain drop-shadow-lg" />
             <span className="font-bold tracking-wide text-shadow-glow">The 06 Kch Store</span>
           </Link>
           <div className="w-11" />
@@ -32,7 +32,6 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       <main className="pb-32 pt-4">{children}</main>
 
-      {/* FAB cart */}
       <button
         onClick={() => setCartOpen(true)}
         className="fixed bottom-6 right-6 z-40 w-16 h-16 rounded-full grid place-items-center shadow-2xl transition hover:scale-110"
@@ -47,12 +46,10 @@ export function AppShell({ children }: { children: ReactNode }) {
         )}
       </button>
 
-      {/* Hamburger drawer */}
       {menuOpen && (
         <div className="fixed inset-0 z-50 animate-in fade-in duration-200">
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setMenuOpen(false)} />
           <aside className="absolute left-0 top-0 h-full w-[86%] max-w-sm glass-strong p-4 overflow-y-auto animate-in slide-in-from-left duration-300 flex flex-col gap-3">
-            {/* Top: single Back button that closes the drawer */}
             <button
               onClick={() => setMenuOpen(false)}
               className="w-full rounded-2xl bg-[color:var(--bb-red)] hover:brightness-110 transition text-white font-bold text-lg py-4 flex items-center justify-center gap-2 shadow-xl"
@@ -61,7 +58,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             </button>
 
             <div className="flex items-center gap-2 px-1 mt-3">
-              <img src={bbLogo.url} alt="" className="w-8 h-8" />
+              <img src={BB_LOGO_URL} alt="" className="w-8 h-8" />
               <span className="font-bold">Menu</span>
             </div>
 
@@ -70,16 +67,16 @@ export function AppShell({ children }: { children: ReactNode }) {
         </div>
       )}
 
-      {/* Cart drawer */}
       {cartOpen && <CartDrawer />}
     </div>
   );
 }
 
 function ContextualNav({ pathname }: { pathname: string }) {
+  // ... (Your existing function remains identical)
   const storeSelection = <NavLink to="/store-select" icon={<Store className="w-5 h-5" />} label="Store Selection" />;
   const awardsMenu = <NavLink to="/awards" icon={<Award className="w-5 h-5" />} label="Awards Menu" />;
-  // Uniform context
+  
   if (pathname.startsWith("/uniform")) {
     return (
       <>
@@ -91,7 +88,7 @@ function ContextualNav({ pathname }: { pathname: string }) {
       </>
     );
   }
-  // Right Arm Awards context
+  
   if (pathname.startsWith("/awards/right")) {
     return (
       <>
@@ -104,7 +101,7 @@ function ContextualNav({ pathname }: { pathname: string }) {
       </>
     );
   }
-  // Left Arm Awards context
+  
   if (pathname.startsWith("/awards/left")) {
     return (
       <>
@@ -117,7 +114,7 @@ function ContextualNav({ pathname }: { pathname: string }) {
       </>
     );
   }
-  // Awards hub — needs Store Selection + Awards Menu at top
+  
   if (pathname.startsWith("/awards")) {
     return (
       <>
@@ -134,7 +131,7 @@ function ContextualNav({ pathname }: { pathname: string }) {
       </>
     );
   }
-  // Awards hub or anywhere else — default hub-level nav
+
   return (
     <>
       <NavLink to="/" icon={<Home className="w-5 h-5" />} label="Welcome" />
