@@ -1,10 +1,9 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { ArrowLeft, Menu, ShoppingCart, X, Home, Shirt, Award, Store, Trash2, Minus, Plus } from "lucide-react";
 import { useStore, cartTotal } from "@/lib/store";
+import bbLogo from "@/assets/bb_logo.png.asset.json";
 import { RIGHT_GROUPS, LEFT_GROUPS } from "@/lib/products";
 import type { ReactNode } from "react";
-
-const BB_LOGO_URL = "https://i.imgur.com/X1ZN9Wj.png";
 
 export function AppShell({ children }: { children: ReactNode }) {
   const { cart, cartOpen, setCartOpen, menuOpen, setMenuOpen } = useStore();
@@ -24,7 +23,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             <Menu className="w-5 h-5" />
           </button>
           <Link to="/" className="flex items-center gap-2">
-            <img src={BB_LOGO_URL} alt="6th Kuching BB" className="h-9 w-9 object-contain drop-shadow-lg" />
+            <img src={bbLogo.url} alt="6th Kuching BB" className="h-9 w-9 object-contain drop-shadow-lg" />
             <span className="font-bold tracking-wide text-shadow-glow">The 06 Kch Store</span>
           </Link>
           <div className="w-11" />
@@ -32,6 +31,21 @@ export function AppShell({ children }: { children: ReactNode }) {
       </header>
 
       <main className="pb-32 pt-4">{children}</main>
+
+      {/* FAB cart */}
+      <button
+        onClick={() => setCartOpen(true)}
+        className="fixed bottom-6 right-6 z-40 w-16 h-16 rounded-full grid place-items-center shadow-2xl transition hover:scale-110"
+        style={{ background: "linear-gradient(135deg, #1e40af, #3b82f6)", boxShadow: "0 10px 40px rgba(59,130,246,0.6)" }}
+        aria-label="Open cart"
+      >
+        <ShoppingCart className="w-6 h-6 text-white" />
+        {totalQty > 0 && (
+          <span className="absolute -top-1 -right-1 min-w-6 h-6 px-1.5 rounded-full bg-[color:var(--bb-red)] text-white text-xs font-bold grid place-items-center border-2 border-white/40">
+            {totalQty}
+          </span>
+        )}
+      </button>
 
       {/* Hamburger drawer */}
       {menuOpen && (
@@ -47,7 +61,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             </button>
 
             <div className="flex items-center gap-2 px-1 mt-3">
-              <img src={BB_LOGO_URL} alt="" className="w-8 h-8" />
+              <img src={bbLogo.url} alt="" className="w-8 h-8" />
               <span className="font-bold">Menu</span>
             </div>
 
