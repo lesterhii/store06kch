@@ -4,8 +4,7 @@ import { useStore, cartTotal } from "@/lib/store";
 import { RIGHT_GROUPS, LEFT_GROUPS } from "@/lib/products";
 import type { ReactNode } from "react";
 
-// REPLACE THIS LINK WITH YOUR ACTUAL EXTERNAL IMAGE ADDRESS
-const BB_LOGO_URL = "https://your-hosting-link.com/bb_logo.png";
+const BB_LOGO_URL = "https://i.imgur.com/X1ZN9Wj.png";
 
 export function AppShell({ children }: { children: ReactNode }) {
   const { cart, cartOpen, setCartOpen, menuOpen, setMenuOpen } = useStore();
@@ -34,9 +33,19 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       <main className="pb-32 pt-4">{children}</main>
 
-      {/* ... (rest of your component remains the same) */}
+      {/* Hamburger drawer */}
+      {menuOpen && (
+        <div className="fixed inset-0 z-50 animate-in fade-in duration-200">
+          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setMenuOpen(false)} />
+          <aside className="absolute left-0 top-0 h-full w-[86%] max-w-sm glass-strong p-4 overflow-y-auto animate-in slide-in-from-left duration-300 flex flex-col gap-3">
+            {/* Top: single Back button that closes the drawer */}
+            <button
+              onClick={() => setMenuOpen(false)}
+              className="w-full rounded-2xl bg-[color:var(--bb-red)] hover:brightness-110 transition text-white font-bold text-lg py-4 flex items-center justify-center gap-2 shadow-xl"
+            >
+              <ArrowLeft className="w-5 h-5" /> Back
+            </button>
 
-            {/* Inside Hamburger drawer */}
             <div className="flex items-center gap-2 px-1 mt-3">
               <img src={BB_LOGO_URL} alt="" className="w-8 h-8" />
               <span className="font-bold">Menu</span>
