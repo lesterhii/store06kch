@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router"; 
 import { SplashOverlay } from "@/components/SplashOverlay";
 import { AlertOctagon, ArrowRight } from "lucide-react";
 import { useState } from "react";
