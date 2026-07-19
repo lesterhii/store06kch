@@ -14,7 +14,7 @@ export type Product = {
 };
 
 export const UNIFORM_GENERAL: Product[] = [
-  { id: "u-fullset", name: "Senior Full Set Uniform", price: 150, image: "https://i.imgur.com/1fbiekL.png", warning: "Leather Boots are not included", category: "general" },
+  { id: "u-fullset", name: "Senior Full Set Uniform", price: 150, image: "https://i.imgur.com/6Gfzhox.jpeg", warning: "Leather Boots are not included", category: "general" },
   { id: "u-capbadge", name: "Cap Badge", price: 5, image: "https://i.imgur.com/JIdT4K7.png", category: "general" },
   { id: "u-armlet-l", name: 'Badge Armlet 5" x 4" (Left Arm)', price: 5, image: "https://i.imgur.com/VK63Ni0.jpeg", category: "general" },
   { id: "u-armlet-r", name: 'Badge Armlet 6" x 4.8" (Right Arm)', price: 6, image: "https://i.imgur.com/CINLTAU.png", category: "general" },
@@ -25,7 +25,7 @@ export const UNIFORM_GENERAL: Product[] = [
   { id: "u-belt", name: "BB Leather Belt", price: 40, image: "https://i.imgur.com/nASqumk.png", sizes: ["32","36","40","44","48"], category: "general" },
   { id: "u-sock", name: "Navy Blue Sock", price: 8.5, image: "https://i.imgur.com/hWg44bZ.jpeg", category: "general" },
   { id: "u-fscap", name: "Field Service Cap", price: 12.5, image: "https://i.imgur.com/RS8al3N.png", sizes: ["XS-54CM","S-56CM","M-58CM","L-60CM","XL-62CM"], category: "general" },
-  { id: "u-mufti", name: "Senior Mufti", price: 25, image: "https://i.imgur.com/gxajo5o.png", sizes: ["XS-34","S-36","M-38","L-40","XL-42","XXL-42","3XL-44"], category: "general" },
+  { id: "u-mufti", name: "Senior Mufti", price: 25, image: "https://i.imgur.com/F8ZhwrH.jpeg", sizes: ["XS-34","S-36","M-38","L-40","XL-42","XXL-42","3XL-44"], category: "general" },
   { id: "u-longshirt", name: "Senior Long Sleeve Shirt", image: "https://i.imgur.com/JGqGR8U.png", sizePriceMap: [
     {label:"XXS-38",price:36},{label:"XS-40",price:36},{label:"S-42",price:36},{label:"M-44",price:36},{label:"L-46",price:36},
     {label:"XL-48",price:38},{label:"XXL-50",price:38},{label:"3XL-52",price:38},
@@ -112,7 +112,7 @@ const leftAward = (id: string, name: string, price: number, group: string, image
 
 export const LEFT_AWARDS: Record<string, { title: string; items: Product[] }> = {
   service: { title: "Service Award", items: [
-    leftAward("la-jlink","Junior Link",7,"service"),
+    leftAward("la-jlink","Junior Link",7,"service", "https://i.imgur.com/hYGXp07.png"),
     leftAward("la-jservice","Junior Service",6.5,"service", "https://i.imgur.com/Z3CTa0T.png"),
     leftAward("la-1yr","One Year Service",6,"service", "https://i.imgur.com/HYk1PvN.png"),
     leftAward("la-3yr","Three Year Service",8.5,"service", "https://i.imgur.com/C7RYf9N.png"),
