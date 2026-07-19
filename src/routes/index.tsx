@@ -14,7 +14,7 @@ function Welcome() {
       <div className="glass-strong rounded-3xl w-full max-w-md p-6 sm:p-8 animate-in fade-in zoom-in-95 duration-500">
         <div className="flex flex-col items-center text-center mb-6">
           <img 
-            src="/bb_logo.png" 
+            src="https://i.imgur.com/X1ZN9Wj.png" 
             alt="6th Kuching Company" 
             className="w-24 h-24 drop-shadow-2xl" 
           />
