@@ -1,6 +1,8 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import bbLogo from "@/assets/bb_logo.png.asset.json";
 import { ArrowRight } from "lucide-react";
+
+// Use the same URL constant here
+const BB_LOGO_URL = "https://i.imgur.com/X1ZN9Wj.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [{ title: "Welcome — The 06 Kch Store" }] }),
@@ -14,7 +16,8 @@ function Welcome() {
     <div className="min-h-[80vh] px-4 py-8 grid place-items-center">
       <div className="glass-strong rounded-3xl w-full max-w-md p-6 sm:p-8 animate-in fade-in zoom-in-95 duration-500">
         <div className="flex flex-col items-center text-center mb-6">
-          <img src={bbLogo.url} alt="6th Kuching Company" className="w-24 h-24 drop-shadow-2xl" />
+          {/* Updated src to use the constant */}
+          <img src={BB_LOGO_URL} alt="6th Kuching Company" className="w-24 h-24 drop-shadow-2xl" />
           <h1 className="mt-4 text-3xl sm:text-4xl font-black text-shadow-glow">Welcome to the<br /> 06 Kch Store!</h1>
           <p className="mt-2 text-white/80">Sure & Stedfast — let's get you kitted out.</p>
         </div>
