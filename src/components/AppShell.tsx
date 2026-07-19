@@ -1,4 +1,4 @@
-Import { Link, useLocation } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { ArrowLeft, Menu, ShoppingCart, X, Home, Shirt, Award, Store, Trash2, Minus, Plus } from "lucide-react";
 import { useStore, cartTotal } from "@/lib/store";
 import bbLogo from "@/assets/bb_logo.png.asset.json";
