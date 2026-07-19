@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react"; 
 import { ArrowRight } from "lucide-react";
 
 export function SplashOverlay({
